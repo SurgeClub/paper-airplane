@@ -20,8 +20,8 @@ module.exports = function() {
     return moment(`${dateString.slice(0, 8)}T${dateString.slice(8)}`);
   };
 
-  firebase.child('events')
-    .orderByChild('startTime')
+  firebase.child('peaks')
+    .orderByChild('time')
     .startAt(parseDate(moment().utcOffset(-480)))
     .endAt(parseDate(moment().utcOffset(-480).add(2, 'hours')))
   .on('value', function(snapshot) {
@@ -34,12 +34,12 @@ module.exports = function() {
 
     const eventsText = Object.keys(events)
     .sort(function(prev, next) {
-      return formatDate(prev.startTime).isBefore(formatDate(next.startTime)) ? -1 : 1;
+      return formatDate(prev.time).isBefore(formatDate(next.time)) ? -1 : 1;
     })
     .map(function(eventId) {
       const event = events[eventId];
 
-      return `${event.category}: ${formatDate(event.startTime).format('hh:mmA')}\n${event.address}`
+      return `${event.name} @ ${formatDate(event.time).format('hh:mmA')}`
     }).join('\n');
 
     firebase.child('users').on('value', function(snapshot) {
