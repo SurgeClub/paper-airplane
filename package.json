@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "firebase": "^2.4.1",
+    "moment": "^2.11.2",
     "node-schedule": "^1.0.0",
     "pm2": "^1.0.1",
     "sinch-sms": "0.0.8"
