@@ -25,6 +25,11 @@ module.exports = function() {
   .on('value', function(snapshot) {
     const events = snapshot.val();
 
+    if (!events) {
+      console.log(events, process.env.FIREBASE_URL);
+      return false;
+    }
+
     const eventsText = Object.keys(events)
     .sort(function(prev, next) {
       return formatDate(prev.startTime).isBefore(formatDate(next.startTime)) ? -1 : 1;
