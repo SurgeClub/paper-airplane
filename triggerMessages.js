@@ -17,11 +17,11 @@ module.exports = function() {
 
     return moment(`${dateString.slice(0, 8)}T${dateString.slice(8)}`);
   };
-
+  console.log(moment().utcOffset(-480));
   firebase.child('events')
     .orderByChild('startTime')
-    .startAt(parseDate(moment()))
-    .endAt(parseDate(moment().add(2, 'days')))
+    .startAt(parseDate(moment().utcOffset(-480)))
+    .endAt(parseDate(moment().utcOffset(-480).add(2, 'days')))
   .on('value', function(snapshot) {
     const events = snapshot.val();
 
