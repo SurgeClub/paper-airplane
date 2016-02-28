@@ -6,6 +6,8 @@ const sinchSms = require('sinch-sms')({
 });
 
 module.exports = function() {
+  console.log('TIME ON SERVER', moment().utcOffset(-480).format('LLLL'));
+
   const firebase = new Firebase(process.env.FIREBASE_URL);
 
   function parseDate(date) {
@@ -17,7 +19,7 @@ module.exports = function() {
 
     return moment(`${dateString.slice(0, 8)}T${dateString.slice(8)}`);
   };
-  console.log(moment().utcOffset(-480));
+
   firebase.child('events')
     .orderByChild('startTime')
     .startAt(parseDate(moment().utcOffset(-480)))

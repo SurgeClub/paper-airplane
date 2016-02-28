@@ -5,7 +5,7 @@ const triggerMessages = require('./triggerMessages');
 
 console.log('------------App started----------------');
 
-schedule.scheduleJob('*/1 * * * *', function() {
+schedule.scheduleJob('*/30 * * * *', function() {
   console.log('Job scheduled');
   triggerMessages();
 });
