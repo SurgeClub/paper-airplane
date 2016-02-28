@@ -23,7 +23,7 @@ module.exports = function() {
   firebase.child('events')
     .orderByChild('startTime')
     .startAt(parseDate(moment().utcOffset(-480)))
-    .endAt(parseDate(moment().utcOffset(-480).add(2, 'days')))
+    .endAt(parseDate(moment().utcOffset(-480).add(2, 'hours')))
   .on('value', function(snapshot) {
     const events = snapshot.val();
 
